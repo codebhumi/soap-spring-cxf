@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vb="http://www.venkata.bhumi.com/product/types/"
+           targetNamespace="http://www.venkata.bhumi.com/product/types/"
+           elementFormDefault="qualified">
+
+    <xs:element name="DummyJsonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="products" type="vb:ProductType" maxOccurs="unbounded"/>
+                <xs:element name="total" type="xs:integer"/>
+                <xs:element name="skip" type="xs:integer"/>
+                <xs:element name="limit" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="products" type="vb:ProductsType"/>
+
+    <xs:complexType name="ProductsType">
+        <xs:sequence>
+            <xs:element name="product" type="vb:ProductType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="product" type="vb:ProductType"/>
+
+    <xs:complexType name="ProductType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="price" type="xs:decimal"/>
+            <xs:element name="discountPercentage" type="xs:decimal"/>
+            <xs:element name="rating" type="xs:decimal"/>
+            <xs:element name="stock" type="xs:int"/>
+            <xs:element name="brand" type="xs:string"/>
+            <xs:element name="category" type="xs:string"/>
+            <xs:element name="thumbnail" type="xs:string"/>
+            <xs:element name="returnPolicy" type="xs:string"/>
+            <xs:element name="minimumOrderQuantity" type="xs:integer"/>
+            <xs:element name="tags" type="xs:string" maxOccurs="unbounded"/>
+            <xs:element name="weight" type="xs:decimal" minOccurs="0"/>
+            <xs:element name="dimensions" type="vb:DimensionsType"/>
+            <xs:element name="reviews" type="vb:ReviewsType" maxOccurs="unbounded"/>
+            <xs:element name="warrantyInformation" type="xs:string" minOccurs="0"/>
+            <xs:element name="shippingInformation" type="xs:string" minOccurs="0"/>
+            <xs:element name="availabilityStatus" type="xs:string"/>
+            <xs:element name="images" type="xs:string" maxOccurs="unbounded"/>
+            <xs:element name="meta" type="vb:MetaType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TagsType">
+        <xs:sequence>
+            <xs:element name="tag" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionsType">
+        <xs:sequence>
+            <xs:element name="length" type="xs:decimal"/>
+            <xs:element name="width" type="xs:decimal"/>
+            <xs:element name="height" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MetaType">
+        <xs:sequence>
+            <xs:element name="createdAt" type="xs:dateTime"/>
+            <xs:element name="updatedAt" type="xs:dateTime"/>
+            <xs:element name="barcode" type="xs:string"/>
+            <xs:element name="qrCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ReviewsType">
+        <xs:sequence>
+            <xs:element name="reviewerName" type="xs:string"/>
+            <xs:element name="reviewerEmail" type="xs:string"/>
+            <xs:element name="date" type="xs:dateTime"/>
+            <xs:element name="rating" type="xs:decimal"/>
+            <xs:element name="comment" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GetAllProductsRequest">
+        <xs:annotation>
+            <xs:documentation>A document style request for soap to retrieve all products</xs:documentation>
+        </xs:annotation>
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="ProductsResponse">
+        <xs:complexType>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="vb:DummyJsonResponse"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+</xs:schema>
